@@ -2,17 +2,20 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
+
 def quadriculado():
-    return "algo" * 36
+    """Retorna as 36 posições do tabuleiro."""
+    return range(36)
+
 
 @app.route("/")
 def index():
     return render_template("base.html")
 
-@app.route('/jogar')
+
+@app.route("/jogar")
 def jogar():
-    tabela = quadriculado()
-    return render_template("index.html", area=tabela)
+    return render_template("index.html", area=quadriculado())
 
 
 if __name__ == "__main__":
