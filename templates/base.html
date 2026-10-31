@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Jogo da Velha</title>
+    <title>Snake Game</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -11,7 +11,10 @@
         <h1>Snake Game</h1>
     </header>
     <nav>
-        <a href="{{ url_for('index') }}">Jogar</a>
+        <a href="{{ url_for('jogar') }}">Jogar</a>
     </nav>
+    <main>
+        {% block conteudo %}{% endblock %}
+    </main>
 </body>
 </html>
