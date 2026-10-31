@@ -4,7 +4,21 @@
 <h2>Tabuleiro</h2>
 <div class="area" role="grid" aria-label="Tabuleiro do Snake">
     {% for valor in area %}
-        <div class="celula" role="gridcell" aria-label="Posição {{ valor + 1 }}"></div>
+
+        {% if not(valor in cobra['posicao']) %}
+            {% if valor == maca%}
+                <div class="celula" id='maca'role="gridcell" aria-label="Posição {{ valor }}"></div>
+            {% else %}
+                <div class="celula" id='vazio'role="gridcell" aria-label="Posição {{ valor }}"></div>
+            {% endif %}
+        {% else %}
+            {% if cobra['posicao'][0] == valor %}
+                <div class="snake" id="cabeca" role="gridcell" aria-label="Posição {{ valor }}"></div>
+            {% else %}
+                <div class="snake" id="corpo" role="gridcell" aria-label="Posição {{ valor }}"></div>
+            {% endif %}
+        {% endif %}
+   
     {% endfor %}
 </div>
 {% endblock %}

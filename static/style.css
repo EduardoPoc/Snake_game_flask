@@ -53,3 +53,15 @@ main {
     height: auto;
     border: 1px solid #8bb77d;
 }
+.snake {
+    width: 100%;
+    height: auto;
+    border: none;
+    background-color: blanchedalmond;
+}
+#cabeca {
+    background-color: aquamarine;
+}
+#maca {
+    background-color: firebrick;
+}
