@@ -40,7 +40,7 @@ main {
 
 .area {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(8, minmax(0, 1fr));
     width: min(80vw, 480px);
     aspect-ratio: 1;
     margin: 1rem auto;
@@ -48,20 +48,21 @@ main {
     background-color: #327d1f;
 }
 
-.celula {
-    width: 100%;
-    height: auto;
+.celula,
+.snake {
+    min-width: 0;
     border: 1px solid #8bb77d;
 }
+
 .snake {
-    width: 100%;
-    height: auto;
-    border: none;
-    background-color: blanchedalmond;
+    border: 1px solid #186107;
+    background-color: #f5deb3;
 }
+
 #cabeca {
     background-color: aquamarine;
 }
+
 #maca {
     background-color: firebrick;
 }
