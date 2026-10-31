@@ -3,9 +3,9 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 
-def quadriculado():
-    """Retorna as 36 posições do tabuleiro."""
-    return range(36)
+def criar_area(linhas=6, colunas=6):
+    """Cria uma matriz bidimensional com as posições vazias do tabuleiro."""
+    return [[0 for _ in range(colunas)] for _ in range(linhas)]
 
 
 @app.route("/")
@@ -15,7 +15,8 @@ def index():
 
 @app.route("/jogar")
 def jogar():
-    return render_template("index.html", area=quadriculado())
+    matriz = criar_area()
+    return render_template("index.html", area=matriz)
 
 
 if __name__ == "__main__":
