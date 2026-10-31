@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snake Game</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <header>
-        <h1>Snake Game</h1>
-    </header>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block conteudo %}
+<h1>Jogo da Velha</h1>
+
+<div class="area">
+    {% for valor in area %}
+        <a class="celula {{ valor }}">
+            {{ valor }}
+        </a>
+    {% endfor %}    
+
+</div>
+
+
+{% endblock %}
