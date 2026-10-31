@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 def quadriculado():
     """Retorna as 36 posições do tabuleiro."""
-    return range(36)
+    return range(64)
 
 
 @app.route("/")
