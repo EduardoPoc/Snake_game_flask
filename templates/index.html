@@ -3,8 +3,18 @@
 {% block conteudo %}
 <h2>Tabuleiro</h2>
 <div class="area" role="grid" aria-label="Tabuleiro do Snake">
-    {% for valor in area %}
-        <div class="celula" role="gridcell" aria-label="Posição {{ valor + 1 }}"></div>
+    {% for linha in area %}
+        {% set linha_index = loop.index %}
+        {% for valor in linha %}
+            <div
+                class="celula"
+                role="gridcell"
+                data-linha="{{ linha_index }}"
+                data-coluna="{{ loop.index }}"
+                data-valor="{{ valor }}"
+                aria-label="Linha {{ linha_index }}, coluna {{ loop.index }}"
+            ></div>
+        {% endfor %}
     {% endfor %}
 </div>
 {% endblock %}
