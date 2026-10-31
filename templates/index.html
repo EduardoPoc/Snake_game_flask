@@ -1,16 +1,10 @@
 {% extends "base.html" %}
 
 {% block conteudo %}
-<h1>Jogo da Velha</h1>
-
-<div class="area">
+<h2>Tabuleiro</h2>
+<div class="area" role="grid" aria-label="Tabuleiro do Snake">
     {% for valor in area %}
-        <a class="celula {{ valor }}">
-            {{ valor }}
-        </a>
-    {% endfor %}    
-
+        <div class="celula" role="gridcell" aria-label="Posição {{ valor + 1 }}"></div>
+    {% endfor %}
 </div>
-
-
 {% endblock %}
