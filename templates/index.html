@@ -1,21 +1,19 @@
 {% extends "base.html" %}
 
 {% block conteudo %}
-<h2>Snake Game</h2>
+<h2>Tabuleiro</h2>
 <div class="area" role="grid" aria-label="Tabuleiro do Snake">
     {% for linha in area %}
-        {% set linha_index = loop.index0 %}
         {% for valor in linha %}
-            {% set coluna_index = loop.index0 %}
-            <div
-                class="{% if valor in ['cobra', 'cobra_cabeca'] %}snake{% else %}celula{% endif %}"
-                {% if valor == 'cobra_cabeca' %}id="cabeca"{% elif valor == 'maca' %}id="maca"{% endif %}
-                role="gridcell"
-                data-linha="{{ linha_index }}"
-                data-coluna="{{ coluna_index }}"
-                data-valor="{{ valor }}"
-                aria-label="{{ valor }}, linha {{ linha_index + 1 }}, coluna {{ coluna_index + 1 }}"
-            ></div>
+            {% if valor == 'maca' %}
+                <div class="celula" id="maca" role="gridcell" aria-label="Posição {{ valor }}"></div>
+            {% elif valor in ['cabeca_cobra', 'cobra_cabeca'] %}
+                <div class="snake" id="cabeca" role="gridcell" aria-label="Posição {{ valor }}"></div>
+            {% elif valor in ['corpo_cobra', 'cobra'] %}
+                <div class="snake corpo" role="gridcell" aria-label="Posição {{ valor }}"></div>
+            {% else %}
+                <div class="celula" role="gridcell" aria-label="Posição {{ valor }}"></div>
+            {% endif %}
         {% endfor %}
     {% endfor %}
 </div>
