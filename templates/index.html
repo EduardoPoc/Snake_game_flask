@@ -3,22 +3,22 @@
 {% block conteudo %}
 <h2>Tabuleiro</h2>
 <div class="area" role="grid" aria-label="Tabuleiro do Snake">
-    {% for valor in area %}
+    {% for linha in area %}
+    {% for valor in linha %}
 
-        {% if not(valor in cobra['posicao']) %}
-            {% if valor == maca%}
-                <div class="celula" id='maca'role="gridcell" aria-label="Posição {{ valor }}"></div>
-            {% else %}
-                <div class="celula" id='vazio'role="gridcell" aria-label="Posição {{ valor }}"></div>
-            {% endif %}
+        {% if valor == 'maca' %}
+        <div class="celula" id='maca'role="gridcell" aria-label="Posição {{ valor }}"></div>
+
+        {% elif valor == 'cabeca_cobra' %}
+            <div class="snake" id="cabeca" role="gridcell" aria-label="Posição {{ valor }}"></div>
+        {% elif valor == 'corpo_cobra' %}
+            <div class="snake" id="corpo" role="gridcell" aria-label="Posição {{ valor }}"></div>
+
         {% else %}
-            {% if cobra['posicao'][0] == valor %}
-                <div class="snake" id="cabeca" role="gridcell" aria-label="Posição {{ valor }}"></div>
-            {% else %}
-                <div class="snake" id="corpo" role="gridcell" aria-label="Posição {{ valor }}"></div>
-            {% endif %}
+            <div class="celula" id='vazio'role="gridcell" aria-label="Posição {{ valor }}"></div>
         {% endif %}
    
+    {% endfor %}
     {% endfor %}
 </div>
 {% endblock %}

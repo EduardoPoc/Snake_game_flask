@@ -1,30 +1,43 @@
 from flask import Flask, render_template
+import random
 
 app = Flask(__name__)
 
-def area():
-    tabuleiro = [[]*8]*8
-    cobra = {'tamanho': 3, 'posicao': [3,2,1]}
+class Item :
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
 
-    import random
-    maca = random.randint(1, 64)
-    while(maca in cobra['posicao']):
-        maca = random.randint(1, 64)
+    def setPosition(self, x, y):
+        self.x = x
+        self.y = y
 
-    for i in range(1, 65):
-        if not i in cobra['posicao'] and i != maca:
-            linha = i // 8
-            coluna = i % 8
-            tabuleiro[linha][coluna] = 'vazio'
-        elif i != maca:
-            if cobra['posicao'] != cobra['posicao'][0]
-                tabuleiro[linha][coluna] = 'cobra'
-            else:
-                tabuleiro[linha][coluna] = 'cobra_cabeca'
-        else:
-            tabuleiro[linha][coluna] = 'maca'
+    def getPosition(self):
+        return self.x, self.y
+    
+    
+cobraInicial = [Item(3, 3), Item(3, 2), Item(3, 1)]
 
-        return tabuleiro
+
+def area(cobra=None):
+    tabuleiro = [['vazio' for _ in range(8)] for _ in range(8)]
+    if None == cobra:
+        cobra = cobraInicial
+    
+    maca = Item(random.randint(0, 7), random.randint(0, 7))
+
+    while(maca.getPosition() in [i.getPosition() for i in cobra]):
+        maca = Item(random.randint(0, 7), random.randint(0, 7))
+
+    cabeca = cobra[0]
+    tabuleiro[cabeca.x][cabeca.y] = 'cabeca_cobra'
+
+    for parte in cobra[1:]:
+        tabuleiro[parte.x][parte.y] = 'corpo_cobra'
+
+    tabuleiro[maca.x][maca.y] = 'maca'
+    
+    return tabuleiro
 
 @app.route("/")
 def index():
