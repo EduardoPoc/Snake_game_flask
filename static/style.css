@@ -41,6 +41,7 @@ main {
 .area {
     display: grid;
     grid-template-columns: repeat(8, minmax(0, 1fr));
+    grid-template-rows: repeat(8, minmax(0, 1fr));
     width: min(80vw, 480px);
     aspect-ratio: 1;
     margin: 1rem auto;
@@ -56,11 +57,12 @@ main {
 
 .snake {
     border: 1px solid #186107;
-    background-color: #f5deb3;
+    background-color: #b5e554;
+    border-radius: 20%;
 }
 
 #cabeca {
-    background: aquamarine url("images/snake-head.svg") center / contain no-repeat;
+    background: #b5e554 url("images/snake-head.svg") center / contain no-repeat;
 }
 
 #maca {
