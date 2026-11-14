@@ -3,42 +3,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#163e32">
-    <title>{% block titulo %}Snake Game{% endblock %}</title>
-    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/snake-mark.svg') }}">
+    <title>Snake Game</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
-    <header class="site-header">
-        <a class="brand" href="{{ url_for('index') }}" aria-label="Snake Game — início">
-            <img src="{{ url_for('static', filename='images/snake-mark.svg') }}" width="40" height="40" alt="">
-            <span>snake<span class="brand-dot">.</span></span>
-        </a>
-        <nav aria-label="Navegação principal">
-            <a class="nav-link" href="{{ url_for('index') }}" {% if request.endpoint == 'index' %}aria-current="page"{% endif %}>Início</a>
-            <a class="nav-link" href="{{ url_for('jogar') }}" {% if request.endpoint == 'jogar' %}aria-current="page"{% endif %}>Tabuleiro <span aria-hidden="true">↗</span></a>
-        </nav>
+    <header>
+        <h1>Snake Game</h1>
     </header>
-    <main id="conteudo">
-        {% block conteudo %}
-        <section class="welcome" aria-labelledby="welcome-title">
-            <div class="welcome-copy">
-                <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> UM CLÁSSICO, UM NOVO VISUAL</p>
-                <h1 id="welcome-title">Pequena cobra.<br>Grandes <span>planos.</span></h1>
-                <p class="intro">O clássico Snake está ganhando vida por aqui. Explore o tabuleiro e acompanhe o começo dessa jornada.</p>
-                <a class="button" href="{{ url_for('jogar') }}">Explorar tabuleiro <span aria-hidden="true">↗</span></a>
-                <p class="development-note">Em desenvolvimento · prévia visual do jogo</p>
-            </div>
-            <div class="welcome-art" aria-hidden="true">
-                <span class="art-tag">SNAKE / 01</span>
-                <img class="hero-snake" src="{{ url_for('static', filename='images/snake-mark.svg') }}" width="240" height="240" alt="">
-                <img class="hero-apple" src="{{ url_for('static', filename='images/apple.svg') }}" width="64" height="64" alt="">
-                <span class="art-caption">Um quadradinho de cada vez.</span>
-            </div>
-        </section>
-        {% endblock %}
+    <nav>
+        <a href="{{ url_for('jogar') }}">Jogar</a>
+    </nav>
+    <main>
+        {% block conteudo %}{% endblock %}
     </main>
-    <footer class="site-footer"><span>Feito com Python + Flask</span><span>Clássico por natureza.</span></footer>
 </body>
 </html>

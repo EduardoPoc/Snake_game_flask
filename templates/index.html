@@ -1,42 +1,22 @@
 {% extends "base.html" %}
-{% block titulo %}Tabuleiro · Snake Game{% endblock %}
+
 {% block conteudo %}
-<section class="game-layout" aria-labelledby="game-title">
-    <div class="game-copy">
-        <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> O JOGO COMEÇA AQUI</p>
-        <h1 id="game-title">De volta<br>ao <span>clássico.</span></h1>
-        <p class="intro">Uma cobra, uma maçã e um mundo de possibilidades em 64 casas.</p>
-        <div class="info-card">
-            <h2>Conheça o tabuleiro</h2>
-            <ul class="legend">
-                <li><span class="legend-snake" aria-hidden="true"></span> Sua cobra <span>3 casas</span></li>
-                <li><img src="{{ url_for('static', filename='images/apple.svg') }}" width="24" height="24" alt=""> Maçã <span>1 casa</span></li>
-            </ul>
-            <p class="info-note">Esta é uma prévia estática. A movimentação ainda está em desenvolvimento.</p>
-        </div>
-        <a class="button" href="{{ url_for('jogar') }}">Gerar novo tabuleiro <span aria-hidden="true">↻</span></a>
-        <p class="development-note">A maçã aparece em uma posição livre aleatória.</p>
-    </div>
-    <div class="board-panel">
-        <div class="board-heading"><h2>Tabuleiro</h2><span class="badge">8 × 8</span></div>
-        <div class="area" role="group" aria-label="Tabuleiro do Snake, 8 linhas e 8 colunas">
-            {% for linha in area %}
-                {% set linha_index = loop.index0 %}
-                {% for valor in linha %}
-                    {% set coluna_index = loop.index0 %}
-                    <div
-                        class="{% if valor in ['cobra', 'cobra_cabeca'] %}snake{% else %}celula{% endif %}"
-                        {% if valor == 'cobra_cabeca' %}id="cabeca"{% elif valor == 'maca' %}id="maca"{% endif %}
-                        role="img"
-                        data-linha="{{ linha_index }}"
-                        data-coluna="{{ coluna_index }}"
-                        data-valor="{{ valor }}"
-                        aria-label="{% if valor == 'cobra_cabeca' %}Cabeça da cobra{% elif valor == 'cobra' %}Corpo da cobra{% elif valor == 'maca' %}Maçã{% else %}Casa vazia{% endif %}, linha {{ linha_index + 1 }}, coluna {{ coluna_index + 1 }}"
-                    ></div>
-                {% endfor %}
-            {% endfor %}
-        </div>
-        <div class="board-footer"><span><span class="status-dot" aria-hidden="true"></span> Prévia do tabuleiro</span><span>64 casas</span></div>
-    </div>
-</section>
+<h2>Snake Game</h2>
+<div class="area" role="grid" aria-label="Tabuleiro do Snake">
+    {% for linha in area %}
+        {% set linha_index = loop.index0 %}
+        {% for valor in linha %}
+            {% set coluna_index = loop.index0 %}
+            <div
+                class="{% if valor in ['cobra', 'cobra_cabeca'] %}snake{% else %}celula{% endif %}"
+                {% if valor == 'cobra_cabeca' %}id="cabeca"{% elif valor == 'maca' %}id="maca"{% endif %}
+                role="gridcell"
+                data-linha="{{ linha_index }}"
+                data-coluna="{{ coluna_index }}"
+                data-valor="{{ valor }}"
+                aria-label="{{ valor }}, linha {{ linha_index + 1 }}, coluna {{ coluna_index + 1 }}"
+            ></div>
+        {% endfor %}
+    {% endfor %}
+</div>
 {% endblock %}
