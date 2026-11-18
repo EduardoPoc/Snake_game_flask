@@ -2,6 +2,7 @@
 
 {% block conteudo %}
 <h2>Tabuleiro</h2>
+<button id="reiniciar" type="button" hidden onclick="location.reload()">Reiniciar jogo</button>
 <div class="area" role="grid" aria-label="Tabuleiro do Snake">
     {% for linha in area %}
     {% for valor in linha %}
